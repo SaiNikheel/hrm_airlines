@@ -18,12 +18,6 @@
   ],
   "public": true,
   "trailingSlash": false,
-  "github": {
-    "silent": false
-  },
-  "gitHub": {
-    "silent": false
-  },
   "directoryListing": false,
   "devCommand": "npm run start",
   "name": "hrm-frontend",

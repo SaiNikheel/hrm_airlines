@@ -1,6 +1,21 @@
 {
+  "name": "hrm_airlines",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=frontend",
+    "start": "npm run start --workspace=backend",
+    "dev": "concurrently \"npm run start --workspace=frontend\" \"npm run start --workspace=backend\""
+  },
   "dependencies": {
     "html2canvas": "^1.4.1",
     "jspdf": "^3.0.1"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }

@@ -44,7 +44,7 @@ import {
   Refresh as RefreshIcon,
   PlayArrow as PlayArrowIcon
 } from '@mui/icons-material';
-import axios from 'axios';
+import api from '../services/api';
 
 const CandidateList = () => {
   const navigate = useNavigate();
@@ -68,7 +68,7 @@ const CandidateList = () => {
   const fetchCandidates = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/candidates');
+      const response = await api.get('/api/candidates');
       setCandidates(response.data);
     } catch (error) {
       console.error('Error fetching candidates:', error);
@@ -79,7 +79,7 @@ const CandidateList = () => {
 
   const handleOnboard = async (id) => {
     try {
-      await axios.post(`/api/onboard/${id}/advance`);
+      await api.post(`/api/onboard/${id}/advance`);
       fetchCandidates();
     } catch (error) {
       console.error('Error starting onboarding:', error);
@@ -111,7 +111,7 @@ const CandidateList = () => {
 
   const handleDeleteConfirm = async () => {
     try {
-      await axios.delete(`/api/candidates/${selectedCandidate.id}`);
+      await api.delete(`/api/candidates/${selectedCandidate.id}`);
       fetchCandidates();
     } catch (error) {
       console.error('Error deleting candidate:', error);

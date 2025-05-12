@@ -11,7 +11,7 @@ import {
   MenuItem,
   Divider
 } from '@mui/material';
-import axios from 'axios';
+import api from '../services/api';
 
 const DEPARTMENTS = [
   'Flight Operations',
@@ -52,7 +52,7 @@ const AddCandidate = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/candidates', formData);
+      await api.post('/api/candidates', formData);
       navigate('/candidates');
     } catch (error) {
       console.error('Error adding candidate:', error);

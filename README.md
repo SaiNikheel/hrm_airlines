@@ -1,6 +1,77 @@
-# Airline HRMS Onboarding Application
+# HRM Airlines
 
-A simple HRMS onboarding application for an airline company that simulates the onboarding workflow for new employees.
+Human Resource Management System for Airlines
+
+## Overview
+
+This is a full-stack web application built for airline HR departments to manage employee onboarding and human resources management processes. The application includes:
+
+- Candidate management
+- Employee onboarding workflow
+- Asset assignment tracking
+- Feedback and check-in system
+
+## Tech Stack
+
+- **Frontend**: React, Material-UI
+- **Backend**: Node.js, Express
+- **Deployment**: Vercel
+
+## Project Structure
+
+```
+hrm_airlines/
+├── frontend/       # React application
+├── backend/        # Express API
+├── vercel.json     # Vercel deployment configuration
+├── package.json    # Root package.json for workspace management
+└── README.md       # Project documentation
+```
+
+## Local Development
+
+1. Install dependencies:
+   ```
+   npm install
+   ```
+
+2. Run development servers:
+   ```
+   npm run dev
+   ```
+
+   This will start both the frontend (on port 3000) and backend (on port 5000) in development mode.
+
+## Deployment to Vercel
+
+This application is configured for deployment to Vercel.
+
+### Manual Deployment
+
+1. Install the Vercel CLI:
+   ```
+   npm install -g vercel
+   ```
+
+2. Deploy to Vercel:
+   ```
+   vercel
+   ```
+
+### Automatic Deployment
+
+The application is configured to be deployed automatically when pushed to the GitHub repository.
+
+## Environment Variables
+
+For production deployment, the following environment variables should be set in Vercel:
+
+- `NODE_ENV` - Set to "production"
+- `PORT` - (Optional) The port the server will run on (defaults to Vercel's settings)
+
+## License
+
+This project is proprietary and confidential.
 
 ## Features
 
@@ -13,12 +84,6 @@ A simple HRMS onboarding application for an airline company that simulates the o
   - Employee ID generation
   - IT asset assignment
   - Background check
-
-## Tech Stack
-
-- Frontend: React.js with Material-UI
-- Backend: Node.js + Express
-- Mock data storage: In-memory arrays
 
 ## Setup Instructions
 

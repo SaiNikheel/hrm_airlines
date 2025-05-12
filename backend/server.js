@@ -3,7 +3,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const app = express();
-const port = 5000;
+// For local development, use port 5000
+const port = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
@@ -229,6 +230,12 @@ app.get('/api/onboard/:id/status', (req, res) => {
     });
 });
 
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-}); 
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(port, () => {
+        console.log(`Server running on port ${port}`);
+    });
+}
+
+// Export the Express app for Vercel
+module.exports = app; 

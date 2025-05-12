@@ -17,6 +17,7 @@ import {
   Chip
 } from '@mui/material';
 import OnboardingWorkflow from './OnboardingWorkflow';
+import api from '../services/api';
 
 const CandidateDetail = () => {
   const { id } = useParams();
@@ -26,12 +27,8 @@ const CandidateDetail = () => {
 
   const fetchCandidateDetails = useCallback(async () => {
     try {
-      const response = await fetch(`/api/candidates/${id}`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch candidate details');
-      }
-      const data = await response.json();
-      setCandidate(data);
+      const response = await api.get(`/api/candidates/${id}`);
+      setCandidate(response.data);
     } catch (err) {
       setError(err.message);
     }
@@ -39,11 +36,7 @@ const CandidateDetail = () => {
 
   const fetchStatus = useCallback(async () => {
     try {
-      const response = await fetch(`/api/onboard/${id}/status`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch status');
-      }
-      await response.json();
+      await api.get(`/api/onboard/${id}/status`);
     } catch (err) {
       setError(err.message);
     }
@@ -56,15 +49,7 @@ const CandidateDetail = () => {
 
   const handleAdvanceStage = async () => {
     try {
-      const response = await fetch(`/api/onboard/${id}/advance`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      if (!response.ok) {
-        throw new Error('Failed to advance stage');
-      }
+      await api.post(`/api/onboard/${id}/advance`);
       await fetchStatus();
       await fetchCandidateDetails();
     } catch (err) {
@@ -74,16 +59,7 @@ const CandidateDetail = () => {
 
   const handleAddFeedback = async (content, type) => {
     try {
-      const response = await fetch(`/api/onboard/${id}/feedback`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ content, type })
-      });
-      if (!response.ok) {
-        throw new Error('Failed to add feedback');
-      }
+      await api.post(`/api/onboard/${id}/feedback`, { content, type });
       await fetchCandidateDetails();
     } catch (err) {
       setError(err.message);
@@ -92,16 +68,7 @@ const CandidateDetail = () => {
 
   const handleAddCheckIn = async (notes, day) => {
     try {
-      const response = await fetch(`/api/onboard/${id}/check-in`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ notes, day })
-      });
-      if (!response.ok) {
-        throw new Error('Failed to add check-in');
-      }
+      await api.post(`/api/onboard/${id}/check-in`, { notes, day });
       await fetchCandidateDetails();
     } catch (err) {
       setError(err.message);

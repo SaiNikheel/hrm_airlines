@@ -6,9 +6,6 @@
       "use": "@vercel/static-build",
       "config": {
         "distDir": "build"
-      },
-      "params": {
-        "cwd": "frontend"
       }
     },
     {
